@@ -3,7 +3,7 @@ from typing import Dict, List, Set, Tuple, Optional, Any, Union
 from engines.quantifier_instantiation_engine import  QuantifierInstantiationEngine
 import itertools
 
-class MBQIInstantiator(QuantifierInstantiationEngine):
+class MBQIEngine(QuantifierInstantiationEngine):
     """
     Implements Model-Based Quantifier Instantiation for Z3.
     """
@@ -158,5 +158,5 @@ class MBQIInstantiator(QuantifierInstantiationEngine):
 
 
 def mbqi_solve(formulas, max_iterations=100, verbose=False) -> Tuple[z3.CheckSatResult, Optional[z3.ModelRef]]:
-    mbqi = MBQIInstantiator(formulas, {}, max_iterations=max_iterations, verbose=verbose)
+    mbqi = MBQIEngine(formulas, {}, max_iterations=max_iterations, verbose=verbose)
     return mbqi.solve()
