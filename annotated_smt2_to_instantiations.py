@@ -1,7 +1,7 @@
 import subprocess
 import argparse
 
-PATH_TO_Z3_TRACER = "/home/itamar/verification/qifac/submodules/smt2utils/target/release/z3tracer" 
+PATH_TO_Z3_TRACER = "/root/verfication/qifac/submodules/smt2utils/target/release/z3tracer"
 
 def run_z3_with_trace(smt_path: str, log_path: str):
     """
@@ -18,7 +18,7 @@ def run_z3tracer(trace_path: str, out_path: str):
     Run z3tracer to process the trace log.
     """
     subprocess.run(
-        [PATH_TO_Z3_TRACER,  "--skip-z3-version-check", "--flat-instantiations", out_path, trace_path],
+        [PATH_TO_Z3_TRACER,  "--skip-z3-version-check", "--detailed-instantiation", out_path, trace_path],
         )
     print(f"Instantiations extracted to {out_path}")
 
@@ -34,3 +34,4 @@ if __name__ == "__main__":
     parser.add_argument("output_path", nargs="?", default="instantiations", help="Output path for instantiations")
     args = parser.parse_args()
     main(args.smt2_path, args.output_path)
+
