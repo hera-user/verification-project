@@ -1,6 +1,6 @@
 import pickle
 from utils import parse_inst
-
+from treelstm import TreeLSTM
 from z3 import *
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -71,12 +71,12 @@ class GraphBuilder:
         t = Tactic('nnf')
         result = t(goal)
 
-        subst_map = parse_inst(inst_str)
+        # subst_map = parse_inst(inst_str)
         G = nx.DiGraph()
         for f in result:
             G = GraphBuilder.build_z3_graph(f.as_expr(), G)
-            for var_name, value_list in subst_map.items():
-                for value in value_list:
-                    G.add_edge(var_name, value)
+            # for var_name, value_list in subst_map.items():
+            #     for value in value_list:
+            #         G.add_edge(var_name, value)
         return G
 
