@@ -1,0 +1,12 @@
+outer
+(or (P X) (QUANT ((Y Int)) (! (R X Y) :qid inner :pattern ((R X Y)))))
+X = d
+[end]
+outer
+(or (P X) (QUANT ((Y Int)) (! (R X Y) :qid inner :pattern ((R X Y)))))
+X = c
+[end]
+inner
+(R c Y)
+Y = c
+[end]
