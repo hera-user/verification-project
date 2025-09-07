@@ -1,4 +1,4 @@
-# sat_and_smt/ex2/annotate.py
+# sat_and_smt/ex2/annotate_smt_for_unsat_cote.py
 import argparse
 import sys
 from typing import List, Union, IO
