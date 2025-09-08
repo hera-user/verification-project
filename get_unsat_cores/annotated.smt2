@@ -1,6 +1,6 @@
 (set-info :smt-lib-version 2.6)
-(set-option :auto_config false)
 (set-option :produce-unsat-cores true)
+(set-option :auto_config false)
 (set-option :type_check true)
 (set-option :smt.case_split 3)
 (set-option :smt.qi.eager_threshold 100)
@@ -10,34 +10,15 @@
 (set-option :smt.mbqi false)
 (set-option :model.compact false)
 (set-option :model.v2 true)
-(set-option :proof true)
 (set-option :pp.bv_literals false)
 (set-info :category "industrial")
-
-
 (declare-fun c () Int)
 (declare-fun d () Int)
 (declare-fun P (Int) Bool)
 (declare-fun R (Int Int) Bool)
-
-(assert
-    (forall ((X Int)) (!
-        (or
-            (P X)
-            (forall ((Y Int)) (!
-                (R X Y)
-                :qid |inner|
-                :pattern ((R X Y))
-            ))
-        )
-        :qid |outer|
-        :pattern ((P X))
-    ))
-)
-
-(assert (not (P d):qid ax1) )
-(assert (not (P c):qid ax2) )
-(assert (not (R c c) :qid ax3))
-
+(assert (! (forall ((X Int)) (! (or (P X) (forall ((Y Int)) (! (R X Y) :qid |inner| :pattern ((R X Y))))) :qid |outer| :pattern ((P X)))) :named assertion_0))
+(assert (! (not (P d)) :named assertion_1))
+(assert (! (not (P c)) :named assertion_2))
+(assert (! (not (R c c)) :named assertion_3))
 (check-sat)
 (get-unsat-core)
