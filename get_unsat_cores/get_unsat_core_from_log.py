@@ -1,11 +1,9 @@
 import argparse
 import subprocess
 import sys
-import shutil
-import os
 from pathlib import Path
 
-TRACER_PATH = r"/home/itamaben/verification/qifac/submodules/smt2utils/target/release/z3tracer"
+TRACER_PATH = "/mnt/c/Users/asafd/Desktop/verfication/smt2utils/target/release/z3tracer"
 
 def main():
     parser = argparse.ArgumentParser(description="Run Z3 tracer on an SMT file.")
